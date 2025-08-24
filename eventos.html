@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada - Chapulines VTC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        :root {
+            --rojo-principal: #D90429;
+            --amarillo-acento: #FBC531;
+            --blanco-fondo: #F5F5F5;
+            --negro-texto: #1C1C1C;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--blanco-fondo);
+            color: var(--negro-texto);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Animaciones de aparición */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Keyframes para animaciones específicas */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Encabezado */
+        .main-header {
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 100px;
+            width: 100px;
+        }
+
+        /* Navegación */
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            margin: 10px 0;
+        }
+
+        .main-nav ul li {
+            margin: 0 1rem;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: var(--negro-texto);
+            font-weight: 700;
+            font-size: 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav ul li a:hover {
+            color: var(--rojo-principal);
+            transform: scale(1.1);
+        }
+
+        /* Botón de acción */
+        .cta-button {
+            background-color: var(--amarillo-acento);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            background-color: #F8D97D;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilos para la página 404 */
+        .error-404 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 200px); /* Ajusta la altura para que el footer no se superponga */
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-404 h1 {
+            font-size: clamp(6rem, 15vw, 10rem);
+            color: var(--rojo-principal);
+            animation: fadeInDown 1.5s ease-in-out;
+        }
+
+        .error-404 h2 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: var(--negro-texto);
+            animation: fadeInDown 1.8s ease-in-out;
+        }
+
+        /* Pie de Página (Footer) */
+        .main-footer {
+            background-color: var(--negro-texto);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        .main-footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--amarillo-acento);
+            transform: scale(1.2);
+        }
+
+        /* Media Queries para hacerlo responsivo */
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 1rem;
+            }
+
+            .main-nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .header-action {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="#">
+                <img src="chapulines.png" alt="Logo de Chapulines VTC" class="logo">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#requisitos">Requisitos</a></li>
+                <li><a href="#afiliados">Afiliados</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="header-action">
+            <a href="https://discord.gg/UY42pmqvnw" class="cta-button">¡Únete a nuestro Discord!</a>
+        </div>
+    </header>
+
+    <main class="error-404 hidden">
+        <h1>404</h1>
+        <h2>Página aún no disponible</h2>
+    </main>
+
+    <footer id="contacto" class="main-footer hidden">
+        <div class="container">
+            <p>&copy; 2025 Chapulines VTC. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main, .main-footer');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('hidden');
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
