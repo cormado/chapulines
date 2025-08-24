@@ -1,2 +1,0 @@
-# chapulines
-Chapulines Oficial Website
