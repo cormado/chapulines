@@ -3,212 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página no encontrada - Chapulines VTC</title>
+    <title>Descargables - Chapulines VTC</title>
     <link rel="icon" type="image/png" href="chapulines.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* Estilos generales */
-        :root {
-            --rojo-principal: #D90429;
-            --amarillo-acento: #FBC531;
-            --blanco-fondo: #F5F5F5;
-            --negro-texto: #1C1C1C;
-        }
+    /* Estilos generales */
+    :root {
+        --rojo-principal: #D90429;
+        --amarillo-acento: #FBC531;
+        --blanco-fondo: #F5F5F5;
+        --negro-texto: #1C1C1C;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--blanco-fondo);
-            color: var(--negro-texto);
-            overflow-x: hidden;
-        }
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: var(--blanco-fondo);
+        color: var(--negro-texto);
+        overflow-x: hidden;
+    }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 5%;
-        }
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 5%;
+    }
 
-        /* Animaciones de aparición */
-        .hidden {
+    /* Animaciones de aparición */
+    .hidden {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    /* Keyframes para animaciones específicas */
+    @keyframes fadeInDown {
+        from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(-20px);
         }
-
-        .visible {
+        to {
             opacity: 1;
             transform: translateY(0);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
+    }
 
-        /* Keyframes para animaciones específicas */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+    @keyframes scaleUp {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
         }
-        
-        @keyframes scaleUp {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        to {
+            opacity: 1;
+            transform: scale(1);
         }
+    }
 
-        /* Encabezado */
+    /* Efecto de luz para los botones */
+    @keyframes glowing {
+        0% { box-shadow: 0 0 5px var(--amarillo-acento); }
+        50% { box-shadow: 0 0 20px var(--amarillo-acento); }
+        100% { box-shadow: 0 0 5px var(--amarillo-acento); }
+    }
+
+    /* Encabezado */
+    .main-header {
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 5%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+        height: 100px;
+        width: 100px;
+    }
+
+    /* Navegación */
+    .main-nav ul {
+        list-style: none;
+        display: flex;
+        margin: 10px 0;
+    }
+
+    .main-nav ul li {
+        margin: 0 1rem;
+    }
+
+    .main-nav ul li a {
+        text-decoration: none;
+        color: var(--negro-texto);
+        font-weight: 700;
+        font-size: 1rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .main-nav ul li a:hover {
+        color: var(--rojo-principal);
+        transform: scale(1.1);
+    }
+
+    /* Botón de acción */
+    .cta-button {
+        background-color: var(--amarillo-acento);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px) scale(1.05);
+        background-color: #F8D97D;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        animation: glowing 1.5s infinite;
+    }
+
+    /* Estilos de la sección de Descargables */
+    .descargables-section {
+        padding: 4rem 0;
+        text-align: center;
+    }
+
+    .descargables-section h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 2rem;
+        color: var(--rojo-principal);
+        animation: fadeInDown 1.5s ease-in-out;
+    }
+
+    .descargables-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .download-item {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .download-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-container {
+        width: 100%;
+        height: 200px; /* Define una altura fija para todas las imágenes de vista previa */
+        margin-bottom: 1.5rem;
+        border-radius: 10px;
+        overflow: hidden; /* Oculta las partes de la imagen que exceden el contenedor */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.5s ease;
+    }
+
+    .download-item:hover .image-container {
+        transform: scale(1.05);
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ajusta la imagen dentro del contenedor manteniendo su relación de aspecto. Puedes probar 'cover' si prefieres que la imagen cubra todo el contenedor recortándose si es necesario. */
+        display: block; /* Evita espacios extra debajo de la imagen */
+    }
+
+    .download-item h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--negro-texto);
+    }
+
+    .download-button-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .download-button {
+        background-color: var(--rojo-principal);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .download-button:hover {
+        background-color: #A30321;
+        transform: scale(1.05);
+    }
+
+    /* Pie de Página (Footer) */
+    .main-footer {
+        background-color: var(--negro-texto);
+        color: #fff;
+        text-align: center;
+        padding: 2rem 5%;
+    }
+
+    .main-footer p {
+        margin-bottom: 1rem;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .social-links a {
+        color: #fff;
+        font-size: 1.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: var(--amarillo-acento);
+        transform: scale(1.2);
+    }
+
+    /* Media Queries para hacerlo responsivo */
+    @media (max-width: 768px) {
         .main-header {
-            background-color: #fff;
-            display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 1rem 5%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            padding: 1rem;
         }
 
-        .logo {
-            height: 100px;
-            width: 100px;
-        }
-
-        /* Navegación */
         .main-nav ul {
-            list-style: none;
-            display: flex;
-            margin: 10px 0;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
         }
 
         .main-nav ul li {
-            margin: 0 1rem;
+            margin: 0.5rem 0;
         }
 
-        .main-nav ul li a {
-            text-decoration: none;
-            color: var(--negro-texto);
-            font-weight: 700;
-            font-size: 1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
+        .header-action {
+            margin-top: 1rem;
         }
-
-        .main-nav ul li a:hover {
-            color: var(--rojo-principal);
-            transform: scale(1.1);
-        }
-
-        /* Botón de acción */
-        .cta-button {
-            background-color: var(--amarillo-acento);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            background-color: #F8D97D;
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Estilos para la página 404 */
-        .error-404 {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - 200px); /* Ajusta la altura para que el footer no se superponga */
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .error-404 h1 {
-            font-size: clamp(6rem, 15vw, 10rem);
-            color: var(--rojo-principal);
-            animation: fadeInDown 1.5s ease-in-out;
-        }
-
-        .error-404 h2 {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            color: var(--negro-texto);
-            animation: fadeInDown 1.8s ease-in-out;
-        }
-
-        /* Pie de Página (Footer) */
-        .main-footer {
-            background-color: var(--negro-texto);
-            color: #fff;
-            text-align: center;
-            padding: 2rem 5%;
-        }
-
-        .main-footer p {
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-
-        .social-links a {
-            color: #fff;
-            font-size: 1.5rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--amarillo-acento);
-            transform: scale(1.2);
-        }
-
-        /* Media Queries para hacerlo responsivo */
-        @media (max-width: 768px) {
-            .main-header {
-                flex-direction: column;
-                align-items: center;
-                padding: 1rem;
-            }
-
-            .main-nav ul {
-                flex-direction: column;
-                align-items: center;
-                margin-top: 1rem;
-            }
-
-            .main-nav ul li {
-                margin: 0.5rem 0;
-            }
-
-            .header-action {
-                margin-top: 1rem;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 
@@ -221,7 +295,7 @@
         <nav class="main-nav">
             <ul>
                 <li><a href="/index">Inicio</a></li>
-                <li><a href="/galeria">Descargables</a></li>
+                <li><a href="#galeria">Descargables</a></li>
                 <li><a href="/eventos">Eventos</a></li>
             </ul>
         </nav>
@@ -230,10 +304,52 @@
         </div>
     </header>
 
-    <main class="error-404 hidden">
-        <h1>404</h1>
-        <h2>Página aún no disponible</h2>
-    </main>
+<main class="descargables-section">
+    <div class="container">
+        <h1>Descargables</h1>
+        <div class="descargables-grid">
+
+            <div class="download-item hidden">
+                <h3>Logo de la Empresa</h3>
+                <div class="image-container">
+                    <img src="logo.png" alt="Logo de Chapulines VTC">
+                </div>
+                <div class="download-button-group">
+                    <a href="logo.png" download class="download-button">
+                        <i class="fas fa-download"></i> Con Fondo
+                    </a>
+                    <a href="logo_sinfondo.png" download class="download-button">
+                        <i class="fas fa-download"></i> Sin Fondo
+                    </a>
+                </div>
+            </div>
+
+            <div class="download-item hidden">
+                <h3>Fondo de Pantalla</h3>
+                <div class="image-container">
+                    <img src="fondo.png" alt="Fondo de pantalla de Chapulines VTC">
+                </div>
+                <div class="download-button-group">
+                    <a href="fondo.png" download class="download-button">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+            </div>
+
+            <div class="download-item hidden">
+                <h3>Banner</h3>
+                <div class="image-container">
+                    <img src="banner.png" alt="Banner de Chapulines VTC">
+                </div>
+                <div class="download-button-group">
+                    <a href="banner.png" download class="download-button">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
     <footer id="contacto" class="main-footer hidden">
         <div class="container">
@@ -248,7 +364,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('main, .main-footer');
+            const sections = document.querySelectorAll('.descargables-section, .main-footer, .download-item');
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -270,6 +386,5 @@
             });
         });
     </script>
-
 </body>
 </html>
