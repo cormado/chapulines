@@ -8,6 +8,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        /* Estilos de la pantalla de carga */
+        #loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--blanco-fondo);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        #loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--rojo-principal);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Ocultar el contenido inicialmente */
+        #content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
         /* Estilos generales */
         :root {
             --rojo-principal: #D90429;
@@ -471,123 +507,142 @@
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="logo-container">
-            <a href="#">
-                <img src="chapulines.png" alt="Logo de Chapulines VTC" class="logo">
-            </a>
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="/galeria">Descargables</a></li>
-                <li><a href="/eventos">Eventos</a></li>
-            </ul>
-        </nav>
-        <div class="header-action">
-            <a href="https://discord.gg/UY42pmqvnw" class="cta-button">¡Únete a nuestro Discord!</a>
-        </div>
-    </header>
+    <div id="loader-container">
+        <div id="loader-spinner"></div>
+    </div>
 
-    <main id="inicio" class="hero-section">
-        <div class="hero-content">
-            <h1>Chapulines VTC</h1>
-            <p>Conducimos con astucia!</p>
-            <a href="https://discord.gg/UY42pmqvnw" class="cta-button">¡Únete ahora!</a>
-        </div>
-    </main>
-
-    <section id="nosotros" class="section nosotros-section hidden">
-        <div class="container">
-            <h2>Quiénes somos</h2>
-            <p>En Chapulines VTC, no solo somos una VTC, somos realmente un grupo de amigos que les encanta convivir y conducir en compañia.</p>
-            
-            <h3 class="sub-title">Nuestra Visión</h3>
-            <p>Nuestra visión es clara: queremos ser la comunidad hispana de truckers más grande y unida. Un lugar donde todos sientan el sentido de pertenencia, se la pase increíble y viva cada ruta como una experiencia. Queremos que Chapulines sea una de las mejores comunidades de ETS2 y ATS.</p>
-
-            <h3 class="sub-title">Nuestra Meta</h3>
-            <p>Lo que buscamos es ofrecerles la mejor experiencia posible a nuestros conductores en ETS2/ATS. Queremos un ambiente fuera de toxicidad, donde nos apoyemos, nos divirtamos y hasta le echemos ganas a la competencia sana. La idea es que todos crezcamos como truckers y, lo más importante, como una gran familia. Queremos que cada ruta con Chapulines se quede grabada como un recuerdo épico.</p>
-        </div>
-    </section>
-
-    <section id="galeria" class="section galeria-section hidden">
-        <div class="container">
-            <h2>Galería</h2>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-item">
-                        <img src="img1.png" alt="Convoy Multiempresa">
-                        <div class="carousel-title">Convoy Multiempresa</div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img2.png" alt="Convoy Interno">
-                        <div class="carousel-title">Convoy Multiempresa</div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img3.png" alt="Transporte Ilegal">
-                        <div class="carousel-title">Transporte Ilegal</div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img4.png" alt="Transporte Sobredimensionado">
-                        <div class="carousel-title">Transporte Sobredimensionado</div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img6.png" alt="Ruta Fake Taxi">
-                        <div class="carousel-title">Ruta Fake Taxi</div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img7.png" alt="Encuentro en el camino">
-                        <div class="carousel-title">Primer Convoy Interno</div>
-                    </div>
-                </div>
-                <button id="prev-btn" class="carousel-button"><i class="fas fa-chevron-left"></i></button>
-                <button id="next-btn" class="carousel-button"><i class="fas fa-chevron-right"></i></button>
+    <div id="content">
+        <header class="main-header">
+            <div class="logo-container">
+                <a href="#">
+                    <img src="chapulines.png" alt="Logo de Chapulines VTC" class="logo">
+                </a>
             </div>
-        </div>
-    </section>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="/galeria">Descargables</a></li>
+                    <li><a href="/eventos">Eventos</a></li>
+                </ul>
+            </nav>
+            <div class="header-action">
+                <a href="https://discord.gg/UY42pmqvnw" class="cta-button">¡Únete a nuestro Discord!</a>
+            </div>
+        </header>
 
-    <section id="requisitos" class="section requisitos-section hidden">
-        <div class="container">
-            <h2>¡Súbete al Camión!</h2>
-            <p>¿Listo para unirte a la familia? Asegúrate de cumplir con estos sencillos requisitos para empezar a dominar las carreteras con nosotros.</p>
-            <ul class="requisitos-list">
-                <li><i class="fas fa-check-circle icon-rojo"></i> Tener una copia legal de Euro Truck Simulator 2 y/o de American Truck Simulator.</li>
-                <li><i class="fas fa-check-circle icon-rojo"></i> Necesitas tener una cuenta y el cliente descargado de TruckersMP.</li>
-                <li><i class="fas fa-check-circle icon-rojo"></i> Tener una cuenta de discord para unirte a el servidor de chapulines.</li>
-                <li><i class="fas fa-check-circle icon-rojo"></i> No tener cuenta sospechosa en discord o mas de 3 baneos activos en TruckersMP.</li>
-            </ul>
-            <a href="https://discord.gg/UY42pmqvnw" class="cta-button">Aplica ahora</a>
-        </div>
-    </section>
+        <main id="inicio" class="hero-section">
+            <div class="hero-content">
+                <h1>Chapulines VTC</h1>
+                <p>Conducimos con astucia!</p>
+                <a href="https://discord.gg/UY42pmqvnw" class="cta-button">¡Únete ahora!</a>
+            </div>
+        </main>
 
-    <section id="afiliados" class="section afiliados-section hidden">
-        <div class="container">
-            <h2>Empresas Afiliadas</h2>
-            <p>Nuestra empresa está comprometida a ser lo más amigable y respetuosa con todas las demás empresas, evitamos conflictos mayores y malentendidos con miembros de empresas externas, evitando un sentido de desconfianza u odio entre empresas.</p>
-            <div class="afiliados-grid">
-                <div class="afiliado-item">
-                    <img src="frde.png" alt="Logo de empresa afiliada" class="logo-afiliado">
-                    <h3>FRDE Transport & Logistics</h3>
-                    <p>FRDE es la primera empresa que se afilio con Chapulines, desde que asistimos a su convoy publico empezamos a tener varias interacciones y de ahi surgieron ganas de colaborar</p>
-                    <a href="https://www.youtube.com/@epl000ck">@easton</a>
+        <section id="nosotros" class="section nosotros-section hidden">
+            <div class="container">
+                <h2>Quiénes somos</h2>
+                <p>En Chapulines VTC, no solo somos una VTC, somos realmente un grupo de amigos que les encanta convivir y conducir en compañia.</p>
+                
+                <h3 class="sub-title">Nuestra Visión</h3>
+                <p>Nuestra visión es clara: queremos ser la comunidad hispana de truckers más grande y unida. Un lugar donde todos sientan el sentido de pertenencia, se la pase increíble y viva cada ruta como una experiencia. Queremos que Chapulines sea una de las mejores comunidades de ETS2 y ATS.</p>
+
+                <h3 class="sub-title">Nuestra Meta</h3>
+                <p>Lo que buscamos es ofrecerles la mejor experiencia posible a nuestros conductores en ETS2/ATS. Queremos un ambiente fuera de toxicidad, donde nos apoyemos, nos divirtamos y hasta le echemos ganas a la competencia sana. La idea es que todos crezcamos como truckers y, lo más importante, como una gran familia. Queremos que cada ruta con Chapulines se quede grabada como un recuerdo épico.</p>
+            </div>
+        </section>
+
+        <section id="galeria" class="section galeria-section hidden">
+            <div class="container">
+                <h2>Galería</h2>
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <img src="img1.png" alt="Convoy Multiempresa">
+                            <div class="carousel-title">Convoy Multiempresa</div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img2.png" alt="Convoy Interno">
+                            <div class="carousel-title">Convoy Multiempresa</div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img3.png" alt="Transporte Ilegal">
+                            <div class="carousel-title">Transporte Ilegal</div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img4.png" alt="Transporte Sobredimensionado">
+                            <div class="carousel-title">Transporte Sobredimensionado</div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img6.png" alt="Ruta Fake Taxi">
+                            <div class="carousel-title">Ruta Fake Taxi</div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img7.png" alt="Encuentro en el camino">
+                            <div class="carousel-title">Primer Convoy Interno</div>
+                        </div>
+                    </div>
+                    <button id="prev-btn" class="carousel-button"><i class="fas fa-chevron-left"></i></button>
+                    <button id="next-btn" class="carousel-button"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    </main> <footer id="contacto" class="main-footer hidden">
-        <div class="container">
-            <p>&copy; 2025 Chapulines VTC. Todos los derechos reservados.</p>
-            <div class="social-links">
-                <a href="https://www.tiktok.com/@chapulinesvtc"><i class="fab fa-tiktok"></i></a>
-                <a href="https://discord.gg/UY42pmqvnw"><i class="fab fa-discord"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+        <section id="requisitos" class="section requisitos-section hidden">
+            <div class="container">
+                <h2>¡Súbete al Camión!</h2>
+                <p>¿Listo para unirte a la familia? Asegúrate de cumplir con estos sencillos requisitos para empezar a dominar las carreteras con nosotros.</p>
+                <ul class="requisitos-list">
+                    <li><i class="fas fa-check-circle icon-rojo"></i> Tener una copia legal de Euro Truck Simulator 2 y/o de American Truck Simulator.</li>
+                    <li><i class="fas fa-check-circle icon-rojo"></i> Necesitas tener una cuenta y el cliente descargado de TruckersMP.</li>
+                    <li><i class="fas fa-check-circle icon-rojo"></i> Tener una cuenta de discord para unirte a el servidor de chapulines.</li>
+                    <li><i class="fas fa-check-circle icon-rojo"></i> No tener cuenta sospechosa en discord o mas de 3 baneos activos en TruckersMP.</li>
+                </ul>
+                <a href="https://discord.gg/UY42pmqvnw" class="cta-button">Aplica ahora</a>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <section id="afiliados" class="section afiliados-section hidden">
+            <div class="container">
+                <h2>Empresas Afiliadas</h2>
+                <p>Nuestra empresa está comprometida a ser lo más amigable y respetuosa con todas las demás empresas, evitamos conflictos mayores y malentendidos con miembros de empresas externas, evitando un sentido de desconfianza u odio entre empresas.</p>
+                <div class="afiliados-grid">
+                    <div class="afiliado-item">
+                        <img src="frde.png" alt="Logo de empresa afiliada" class="logo-afiliado">
+                        <h3>FRDE Transport & Logistics</h3>
+                        <p>FRDE es la primera empresa que se afilio con Chapulines, desde que asistimos a su convoy publico empezamos a tener varias interacciones y de ahi surgieron ganas de colaborar</p>
+                        <a href="https://www.youtube.com/@epl000ck">@easton</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </main> <footer id="contacto" class="main-footer hidden">
+            <div class="container">
+                <p>&copy; 2025 Chapulines VTC. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="https://www.tiktok.com/@chapulinesvtc"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://discord.gg/UY42pmqvnw"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('load', function() {
+            const loaderContainer = document.getElementById('loader-container');
+            const content = document.getElementById('content');
+
+            loaderContainer.style.opacity = '0';
+            setTimeout(function() {
+                loaderContainer.style.display = 'none';
+                content.style.display = 'block';
+                setTimeout(function() {
+                    content.style.opacity = '1';
+                }, 10);
+            }, 500); // 500ms para que la transición de opacidad se complete
+
+            // Resto de tu script (funcionalidad del carrusel y observer)
             const sections = document.querySelectorAll('.section, .main-footer');
             const observerOptions = {
                 root: null,
@@ -608,39 +663,37 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
-        });
 
-        // Funcionalidad del Carrusel
-        const carouselTrack = document.querySelector('.carousel-track');
-        const carouselItems = document.querySelectorAll('.carousel-item');
-        const prevButton = document.getElementById('prev-btn');
-        const nextButton = document.getElementById('next-btn');
-        let currentIndex = 0;
+            // Funcionalidad del Carrusel
+            const carouselTrack = document.querySelector('.carousel-track');
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            const prevButton = document.getElementById('prev-btn');
+            const nextButton = document.getElementById('next-btn');
+            let currentIndex = 0;
 
-        function updateCarousel() {
-            carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-            carouselItems.forEach((item, index) => {
-                if (index === currentIndex) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
+            function updateCarousel() {
+                carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+                carouselItems.forEach((item, index) => {
+                    if (index === currentIndex) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % carouselItems.length;
+                updateCarousel();
             });
-        }
 
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % carouselItems.length;
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+                updateCarousel();
+            });
+
             updateCarousel();
         });
-
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-            updateCarousel();
-        });
-
-        // Inicializar carrusel
-        updateCarousel();
     </script>
-
 </body>
 </html>
