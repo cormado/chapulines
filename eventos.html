@@ -305,6 +305,15 @@
             </div>
 
             <div class="event-card hidden">
+                <img src="banner_hallowen.png" alt="Banner del Chapulines Hallowen Convoy" class="event-banner">
+                <div class="event-content">
+                    <h2>Chapulines Hallowen Convoy</h2>
+                    <p class="event-date" id="event-date-2"></p>
+                    <a href="https://truckersmp.com/events/30799-🎃%7C-chapulines-hallowen-convoy%7C🎃" class="event-button">Ir al evento</a>
+                </div>
+            </div>
+
+            <div class="event-card hidden">
                 <img src="banner_first_year.png" alt="Banner del primer aniversario de Chapulines" class="event-banner">
                 <div class="event-content">
                     <h2>First Year At Chapulines</h2>
@@ -356,6 +365,26 @@
                 const eventDateElement = document.getElementById('event-date-1');
                 if (eventDateElement) {
                     const eventDate = new Date('2025-09-15T21:00:00-06:00'); // Fecha y hora del evento en GTM-6
+                    const options = {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        timeZoneName: 'short'
+                    };
+                    const formattedDate = eventDate.toLocaleString(navigator.language, options);
+                    eventDateElement.textContent = formattedDate;
+                }
+            }
+            formatEventDate();
+        });
+
+                    function formatEventDate() {
+                const eventDateElement = document.getElementById('event-date-2');
+                if (eventDateElement) {
+                    const eventDate = new Date('2025-10-25T20:00:00-06:00'); // Fecha y hora del evento en GTM-6
                     const options = {
                         weekday: 'long',
                         year: 'numeric',
