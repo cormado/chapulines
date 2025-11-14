@@ -7,8 +7,9 @@
     <link rel="icon" type="image/png" href="chapulines.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    /* Hecho por Vintara.xyz */
     <style>
-    /* Estilos generales */
+    /* GENERAL x2 xd */
     :root {
         --rojo-principal: #D90429;
         --amarillo-acento: #FBC531;
@@ -39,7 +40,7 @@
         padding: 0 5%;
     }
 
-    /* Animaciones de aparición */
+    /* ----- */
     .hidden {
         opacity: 0;
         transform: translateY(30px);
@@ -51,7 +52,7 @@
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
 
-    /* Keyframes para animaciones específicas */
+    /* ----- */
     @keyframes fadeInDown {
         from {
             opacity: 0;
@@ -74,14 +75,14 @@
         }
     }
 
-    /* Efecto de luz para los botones */
+    /* ----- */
     @keyframes glowing {
         0% { box-shadow: 0 0 5px var(--amarillo-acento); }
         50% { box-shadow: 0 0 20px var(--amarillo-acento); }
         100% { box-shadow: 0 0 5px var(--amarillo-acento); }
     }
 
-    /* Encabezado */
+    /* CABEZA */
     .main-header {
         background-color: #fff;
         display: flex;
@@ -99,7 +100,7 @@
         width: 100px;
     }
 
-    /* Navegación */
+    /* ----- */
     .main-nav ul {
         list-style: none;
         display: flex;
@@ -123,7 +124,7 @@
         transform: scale(1.1);
     }
 
-    /* Botón de acción */
+    /* ----- */
     .cta-button {
         background-color: var(--amarillo-acento);
         color: #fff;
@@ -142,7 +143,7 @@
         animation: glowing 1.5s infinite;
     }
 
-    /* Estilos de la sección de Descargables */
+    /* ----- */
     .descargables-section {
         padding: 4rem 0;
         text-align: center;
@@ -180,10 +181,10 @@
 
     .image-container {
         width: 100%;
-        height: 200px; /* Define una altura fija para todas las imágenes de vista previa */
+        height: 200px; 
         margin-bottom: 1.5rem;
         border-radius: 10px;
-        overflow: hidden; /* Oculta las partes de la imagen que exceden el contenedor */
+        overflow: hidden; 
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         transition: transform 0.5s ease;
     }
@@ -195,8 +196,8 @@
     .image-container img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Ajusta la imagen dentro del contenedor manteniendo su relación de aspecto. Puedes probar 'cover' si prefieres que la imagen cubra todo el contenedor recortándose si es necesario. */
-        display: block; /* Evita espacios extra debajo de la imagen */
+        object-fit: contain; 
+        display: block; 
     }
 
     .download-item h3 {
@@ -231,7 +232,7 @@
         transform: scale(1.05);
     }
 
-    /* Pie de Página (Footer) */
+    /* FOOTER */
     .main-footer {
         background-color: var(--negro-texto);
         color: #fff;
@@ -260,7 +261,7 @@
         transform: scale(1.2);
     }
 
-    /* Media Queries para hacerlo responsivo */
+    /* ----- */
     @media (max-width: 768px) {
         .main-header {
             flex-direction: column;
