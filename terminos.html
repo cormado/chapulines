@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminos de Servicio - Chapulines VTC</title>
+    <link rel="icon" type="image/png" href="chapulines.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    /* Hecho por www.vintara.xyz */
+    <style>
+        /* CARGA */
+        #loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--blanco-fondo);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        #loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--rojo-principal);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ----- */
+        #content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* GENERAL */
+        :root {
+            --rojo-principal: #D90429;
+            --amarillo-acento: #FBC531;
+            --blanco-fondo: #F5F5F5;
+            --negro-texto: #1C1C1C;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--blanco-fondo);
+            color: var(--negro-texto);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* ----- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* ----- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ----- */
+        .main-header {
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 100px;
+            width: 100px;
+        }
+        
+        /* Oculta la navegación en esta página */
+        .main-nav {
+            display: none; 
+        }
+
+        /* Mantiene el estilo del botón CTA */
+        .cta-button {
+            background-color: var(--amarillo-acento);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            background-color: #F8D97D;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ----- */
+        /* Estilos de la sección de Términos (Similar a .nosotros-section para el fondo y padding) */
+        .terminos-section {
+            padding: 4rem 0;
+            background-color: #fff;
+            text-align: left; /* Alineación a la izquierda para el texto legal */
+        }
+
+        .terminos-section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 2rem;
+            color: var(--rojo-principal);
+            text-align: center;
+        }
+        
+        .terminos-section h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--negro-texto);
+            border-bottom: 2px solid var(--rojo-principal);
+            padding-bottom: 0.5rem;
+        }
+
+        .terminos-section p, .terminos-section li {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .terminos-section ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* El footer - Mantenemos los estilos originales */
+        .main-footer {
+            background-color: var(--negro-texto);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        .main-footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--amarillo-acento);
+            transform: scale(1.2);
+        }
+        
+        /* Estilos de enlaces del footer */
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            font-weight: 700;
+            transition: all .18s;
+        }
+        
+        .footer-links a:hover {
+            background-color: rgba(255,255,255,0.08) !important; 
+            color: #fff !important;
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem;
+            }
+
+            .header-action {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader-container">
+        <div id="loader-spinner"></div>
+    </div>
+
+    <div id="content">
+        <header class="main-header">
+            <div class="logo-container">
+                <a href="/">
+                    <img src="chapulines.png" alt="Logo de Chapulines VTC" class="logo">
+                </a>
+            </div>
+            <div class="header-action">
+                <a href="https://discord.gg/UY42pmqvnw" class="cta-button">¡Únete a nuestro Discord!</a>
+            </div>
+        </header>
+
+        <main>
+            <section id="terminos" class="terminos-section hidden">
+                <div class="container">
+                    <h2>Terminos de Servicio</h2>
+                    <p>
+                        Bienvenido a Chapulines VTC. Al unirte o interactuar con nuestra Comunidad de Transporte Virtual (VTC), aceptas cumplir con los siguientes <b>Términos de Servicio</b>. Estos términos están diseñados para garantizar un ambiente <b>respetuoso</b>, <b>divertido</b> y <b>organizado</b> para todos nuestros miembros.
+                    </p>
+
+                    <h3 id="aceptacion">1. Aceptación de los Términos</h3>
+                    <p>
+                        Al acceder a nuestro servidor de Discord, utilizar nuestros recursos o participar en actividades de la VTC, reconoces haber leído, entendido y aceptado estos <b>Términos de Servicio</b> y nuestra Política de Privacidad. Si no estás de acuerdo con alguna parte de los términos, te rogamos que no utilices nuestros servicios.
+                    </p>
+
+                    <h3 id="membresia">2. Membresía y Requisitos</h3>
+                    <ul>
+                        <li>La membresía en Chapulines VTC está sujeta a la aprobación de la <b>Administración</b>.</li>
+                        <li>Debes cumplir con los requisitos mínimos de TruckersMP (ETS2/ATS) y las reglas específicas de la VTC (edad, actividad, etc.).</li>
+                        <li>Nos reservamos el derecho de revocar la membresía de cualquier conductor que incumpla las reglas de la VTC o de TruckersMP.</li>
+                    </ul>
+
+                    <h3 id="comportamiento">3. Código de Conducta</h3>
+                    <ul>
+                        <li>Se requiere un trato <b>respetuoso</b> hacia todos los miembros de la VTC y de la comunidad de TruckersMP.</li>
+                        <li>Está estrictamente prohibido el <b>acoso</b>, el <b>discurso de odio</b> o cualquier forma de discriminación.</li>
+                        <li>Cualquier forma de <b>trampa</b> o comportamiento perjudicial en los servidores de TruckersMP que resulte en sanciones para la VTC puede resultar en la <b>expulsión inmediata</b>.</li>
+                        <li>Las decisiones de la <b>Administración</b> son finales.</li>
+                    </ul>
+
+                    <h3 id="actividad">4. Reglas de Actividad y Conducción</h3>
+                    <ul>
+                        <li>Los conductores deben registrar su <b>actividad de conducción</b> (e.g., a través de nuestro tracker VTC o TruckersMP).</li>
+                        <li>Durante los <b>convoyes oficiales</b>, se requiere seguir las instrucciones del líder del convoy y mantener la distancia y velocidad adecuadas.</li>
+                        <li>Se espera que los conductores mantengan una <b>conducta de conducción realista</b> y responsable en los servidores multijugador.</li>
+                    </ul>
+
+                    <h3 id="limitacion">5. Limitación de Responsabilidad</h3>
+                    <p>
+                        Chapulines VTC <b>no se hace responsable</b> por cualquier sanción o baneo que un conductor reciba en TruckersMP o Discord como resultado de sus propias acciones. La responsabilidad de cumplir con las reglas del juego y de los mods recae únicamente en el <b>conductor</b>.
+                    </p>
+                    
+                    <h3 id="modificaciones">6. Modificaciones de los Términos</h3>
+                    <p>
+                        Nos reservamos el derecho de <b>modificar</b> o reemplazar estos Términos de Servicio en cualquier momento. La fecha de la última actualización se indicará al inicio del documento. Es responsabilidad del usuario <b>revisar estos términos</b> periódicamente. La continuación del uso de la VTC después de dichas modificaciones constituye la aceptación de los nuevos términos.
+                    </p>
+
+                    <p><b>Última Actualización:</b> Diciembre 02, 2025</p>
+
+                </div>
+            </section>
+        </main>
+
+        <footer id="contacto" class="main-footer hidden">
+            <div class="container">
+                <p>&copy; 2025 Chapulines VTC.</p>
+                <div class="social-links">
+                    <a href="https://www.tiktok.com/@chapulinesvtc"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://discord.gg/UY42pmqvnw"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p style="color: #bbb;">Made by <a href="https://www.vintara.xyz" style="color: #bbb;">Vintara</a></p>
+                <div class="footer-links" style="display:flex;gap:1rem;justify-content:center;align-items:center;margin-top:0.5rem;flex-wrap:wrap;">
+                    <a href="/terminos"
+                        style="color:#fff;text-decoration:none;padding:0.4rem 0.8rem;border-radius:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.04);font-weight:700;transition:all .18s;"
+                        onmouseover="this.style.backgroundColor='rgba(255,255,255,0.15)'; this.style.color='#fff';"
+                        onmouseout="this.style.backgroundColor='rgba(255,255,255,0.08)'; this.style.color='#fff';">
+                        Términos de servicio
+                    </a>
+                    <a href="/politicas"
+                        style="color:#bbb;text-decoration:none;padding:0.4rem 0.8rem;border-radius:6px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);font-weight:700;transition:all .18s;"
+                        onmouseover="this.style.backgroundColor='rgba(255,255,255,0.08)'; this.style.color='#fff';"
+                        onmouseout="this.style.backgroundColor='rgba(255,255,255,0.02)'; this.style.color='#bbb';">
+                        Política de privacidad
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Funcionalidad de Carga (Loader)
+        window.addEventListener('load', function() {
+            const loaderContainer = document.getElementById('loader-container');
+            const content = document.getElementById('content');
+
+            loaderContainer.style.opacity = '0';
+            setTimeout(function() {
+                loaderContainer.style.display = 'none';
+                content.style.display = 'block';
+                setTimeout(function() {
+                    content.style.opacity = '1';
+                }, 10);
+            }, 500); 
+
+            // Funcionalidad de Animación al hacer Scroll (Intersection Observer)
+            const sections = document.querySelectorAll('.terminos-section, .main-footer');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('hidden');
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+        });
+    </script>
+</body>
+</html>
